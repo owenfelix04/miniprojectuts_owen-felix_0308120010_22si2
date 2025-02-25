@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Task</title>
+</head>
+
+<body>
+    <h2>Edit Task</h2>
+    <form action="/tasks/update/<%= task._id %>" method="POST"> <!-- Form untuk mengupdate tugas -->
+        <input type="text" name="title" value="<%= task.title %>" required> <!-- Input untuk judul tugas -->
+        <input type="text" name="category" value="<%= task.category %>" required> <!-- Input untuk kategori tugas -->
+        <input type="date" name="deadline" value="<%= task.deadline.toISOString().split('T')[0] %>" required> <!-- Input untuk tenggat waktu tugas -->
+        <select name="status"> <!-- Dropdown untuk status tugas -->
+            <option value="pending" <%=task.status==="pending" ? "selected" : "" %>>Pending</option>
+            <option value="progress" <%=task.status==="progress" ? "selected" : "" %>>In Progress</option>
+            <option value="done" <%=task.status==="done" ? "selected" : "" %>>Done</option>
+        </select>
+        <button type="submit">Update Task</button> <!-- Tombol untuk mengupdate tugas -->
+    </form>
+    <a href="/tasks">Back to Tasks</a> <!-- Link untuk kembali ke halaman tugas -->
+</body>
+
+</html>

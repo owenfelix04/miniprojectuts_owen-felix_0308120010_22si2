@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Dashboard</title>
+</head>
+<body>
+    <h2>Welcome, <%= user.username %>!</h2>
+    <form action="/auth/logout" method="POST"> <!-- Form untuk logout -->
+        <button type="submit">Logout</button>
+    </form>
+
+    <h3>Add New Task</h3>
+    <form action="/tasks" method="POST"> <!-- Form untuk menambahkan tugas baru -->
+        <input type="text" name="title" placeholder="Task Title" required> <!-- Input untuk judul tugas -->
+        <input type="text" name="category" placeholder="Category" required> <!-- Input untuk kategori tugas -->
+        <input type="date" name="deadline" required> <!-- Input untuk tenggat waktu tugas -->
+        <select name="status"> <!-- Dropdown untuk status tugas -->
+            <option value="pending">Pending</option>
+            <option value="progress">In Progress</option>
+            <option value="done">Done</option>
+        </select>
+        <button type="submit">Add Task</button> <!-- Tombol untuk submit form tugas baru -->
+    </form>
+
+    <h3>Your Tasks</h3>
+    <table border="1"> <!-- Tabel untuk menampilkan tugas-tugas -->
+        <tr>
+            <th>Title</th>
+            <th>Category</th>
+            <th>Deadline</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+        <% tasks.forEach(task => { %> <!-- Loop untuk menampilkan setiap tugas -->
+        <tr>
+            <td><%= task.title %></td> <!-- Menampilkan judul tugas -->
+            <td><%= task.category %></td> <!-- Menampilkan kategori tugas -->
+            <td><%= task.deadline.toDateString() %></td> <!-- Menampilkan tenggat waktu tugas -->
+            <td><%= task.status %></td> <!-- Menampilkan status tugas -->
+            <td>
+                <a href="/tasks/edit/<%= task._id %>">Edit</a> <!-- Link untuk mengedit tugas -->
+                <form action="/tasks/delete/<%= task._id %>" method="POST" style="display:inline;"> <!-- Form untuk menghapus tugas -->
+                    <button type="submit">Delete</button> <!-- Tombol untuk submit form hapus tugas -->
+                </form>
+            </td>
+        </tr>
+        <% }) %>
+    </table>
+</body>
+</html>
