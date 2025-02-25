@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    <h2>Login</h2>
+    <form action="/auth/login" method="POST"> <!-- Form untuk login dengan metode POST -->
+        <input type="text" name="username" placeholder="Username" required> <!-- Input untuk username -->
+        <input type="password" name="password" placeholder="Password" required> <!-- Input untuk password -->
+        <button type="submit">Login</button> <!-- Tombol untuk submit form login -->
+    </form>
+    <p>Don't have an account? <a href="/auth/register">Register</a></p> <!-- Link ke halaman register -->
+</body>
+</html>
